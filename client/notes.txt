@@ -1,0 +1,13 @@
+**Components:**
+    1. Header: Display the app's title/logo and navigation links.
+    2. HabitList: Display a list of habits the user is tracking.
+    3. HabitItem: Display information about a single habit, such as name, progress, and actions.
+    4. AddHabitForm: Allow users to add new habits to their list.
+    5. CalendarView: Show a calendar with habit completion history.
+    6. StatsView: Display statistics and insights about the user's habits.
+
+
+Views:
+    1. Home: Displays the list of habits (HabitList) and a form to add new habits (AddHabitForm).
+    2. Calendar: Shows the CalendarView, allowing users to see their habit completion history.
+    3. Stats: Displays insights and statistics about the user's habit tracking behavior (StatsView).

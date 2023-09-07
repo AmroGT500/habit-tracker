@@ -1,0 +1,36 @@
+/* Header.css */
+
+.header {
+    background-color: #282c34;
+    padding: 16px 0;
+    color: white;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.header ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    margin: 10;
+}
+
+.header ul li {
+    margin: 10;
+}
+
+.header ul li a {
+    color: #61dafb;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.header ul li a:hover {
+    color: #007bff;
+}

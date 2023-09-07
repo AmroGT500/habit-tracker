@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function Header() {
     return (
         <header className="header">
-            <h1>Habit Tracker App</h1>
+            <h1>Habit Tracker</h1>
             <nav>
                 <ul>
                     <li><Link to="/">Home</Link></li>

@@ -1,6 +1,6 @@
 import React from 'react';
-import HabitList from '../components/HabitList';
-import AddHabitForm from '../components/AddHabitForm';
+import HabitList from './HabitList';
+import AddHabitForm from './AddHabitForm';
 
 function Home() {
     return (

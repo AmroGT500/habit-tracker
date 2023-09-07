@@ -4,6 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+flask = "*"
+supabase-py = "*"
+python-decouple = "*"
 
 [dev-packages]
 

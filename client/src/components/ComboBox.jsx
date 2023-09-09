@@ -14,7 +14,6 @@ const ComboBoxSelect = styled.select`
     color: #fff;
     font-size: 16px;
     width: 100%;
-    max-width: 600px;
     outline: none;
   `
 

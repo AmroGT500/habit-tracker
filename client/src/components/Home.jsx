@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import { ButtonIcon, Cell, InlineChildren, StackChildren, Text } from '../components/common';
+import { IconContainer, Cell, InlineChildren, StackChildren, Text } from '../components/common';
 
 import { Link } from 'react-router-dom';
 import { BoltIcon, BookOpenIcon, CodeBracketIcon, ForwardIcon } from '@heroicons/react/24/outline'
@@ -16,7 +16,6 @@ const HabitContainer = styled.div`
     width: 100%;
     height: 100%;
     flex-wrap: wrap;
-    max-width: 1210px;
     margin: 0 auto;
     gap: 10px;
 `
@@ -25,9 +24,9 @@ function Home() {
     return (
         <StackChildren space={10}>
             <InlineChildren space={10}>
-                <ButtonIcon>
+                <IconContainer>
                     <Cog8ToothIcon />
-                </ButtonIcon>
+                </IconContainer>
                 <Cell>
                     <Text color="#fff" fontSize="30px" align='center'>
                         Habit
@@ -35,9 +34,9 @@ function Home() {
                     </Text>
                 </Cell>
                 <Link to="/create">
-                    <ButtonIcon>
+                    <IconContainer>
                         <PlusCircleIcon />
-                    </ButtonIcon>
+                    </IconContainer>
                 </Link>
             </InlineChildren>
             <HabitContainer>

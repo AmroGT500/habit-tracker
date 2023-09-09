@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import { ButtonIcon, Cell, InlineChildren, StackChildren, Text } from './common';
+import { IconContainer, Cell, InlineChildren, StackChildren, Text, ButtonIcon } from './common';
 import { randomNumber } from '../constants/utility';
 import { CheckIcon } from '@heroicons/react/24/outline'
 
@@ -39,9 +39,9 @@ const HabitCard = ({ name, description, icon, color }) => {
     <HabitCardContainer>
       <StackChildren space={10}>
         <InlineChildren space={10}>
-          <ButtonIcon backgroundColor={'#344154'}>
+          <IconContainer backgroundColor={'#344154'}>
             {icon}
-          </ButtonIcon>
+          </IconContainer>
           <Cell>
             <StackChildren space={5}>
               <Text color="#fff" fontSize="16px">{name}</Text>

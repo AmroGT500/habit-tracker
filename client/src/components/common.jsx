@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { hexToRgbString } from '../constants/utility';
 
-export const ButtonIcon = styled.div`
+export const IconContainer = styled.div`
     background-color: ${(props) => hexToRgbString(props.backgroundColor, props.alpha) || 'inherit'};
     border-radius: 10px;
     width: 40px;
@@ -14,6 +14,10 @@ export const ButtonIcon = styled.div`
         width: 50%;
         height: 50%;
     }
+`
+
+export const ButtonIcon = styled(IconContainer)`
+    cursor: pointer;
 `
 
 export const ColorIcon = styled.div`
@@ -69,6 +73,5 @@ export const InputField = styled.input`
     color: #fff;
     font-size: 16px;
     width: 100%;
-    max-width: 600px;
     outline: none;
 `

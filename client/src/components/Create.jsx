@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import { ButtonIcon, ColorIcon, Cell, InlineChildren, StackChildren, Text, InputField } from '../components/common';
+import { IconContainer, ButtonIcon, ColorIcon, Cell, InlineChildren, StackChildren, Text, InputField } from '../components/common';
 import ComboBox from './ComboBox';
 
 import { Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { habitColors } from '../constants/habitColors';
 const IconGrid = styled.div`
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 10px;
     max-height: 140px;
     overflow-y: hidden;
@@ -20,18 +20,20 @@ function Create() {
   return (
     <StackChildren space={10}>
       <InlineChildren space={10}>
-        <ButtonIcon>
-          <OutlineIcons.XMarkIcon />
-        </ButtonIcon>
+        <Link to="/">
+          <IconContainer>
+            <OutlineIcons.XMarkIcon />
+          </IconContainer>
+        </Link>
         <Cell align={'center'}>
           <Text color="#fff" fontSize="20px" align='center'>
             Create Habit
           </Text>
         </Cell>
         <Link to="/create">
-          <ButtonIcon>
+          <IconContainer>
             <OutlineIcons.CheckCircleIcon />
-          </ButtonIcon>
+          </IconContainer>
         </Link>
       </InlineChildren>
 

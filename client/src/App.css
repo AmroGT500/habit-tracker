@@ -1,9 +1,10 @@
 /* App.css */
 
 body {
-  margin: 0;
   padding: 10px;
   background-color: #0f1729;
+  max-width: 1230px;
+  margin: 0 auto;
 }
 
 .App {

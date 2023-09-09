@@ -16,6 +16,11 @@ export const ButtonIcon = styled.div`
     }
 `
 
+export const ColorIcon = styled.div`
+    background-color: ${(props) => props.color};
+    border-radius: 5px;
+`
+
 export const StackChildren = styled.div`
     display: flex;
     flex-direction: column;
@@ -54,4 +59,16 @@ export const Text = styled.div`
     text-align:  ${(props) => props.align || 'left'};
     display: ${(props) => props.inline ? 'inline' : 'block'};
     tag: ${(props) => props.tag};
+`
+
+export const InputField = styled.input`
+    background-color: #344154;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    width: 100%;
+    max-width: 600px;
+    outline: none;
 `

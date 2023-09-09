@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
-import { ButtonIcon, Cell, InlineChildren, StackChildren, Text } from '../components/common';
+import { ButtonIcon, ColorIcon, Cell, InlineChildren, StackChildren, Text, InputField } from '../components/common';
+import ComboBox from './ComboBox';
 
 import { Link } from 'react-router-dom';
 import * as OutlineIcons from '@heroicons/react/24/outline'
@@ -14,74 +15,6 @@ const IconGrid = styled.div`
     max-height: 140px;
     overflow-y: hidden;
 `
-
-const ColorIcon = styled.div`
-    background-color: ${(props) => props.color};
-    border-radius: 5px;
-`
-
-const HabitInput = styled.input`
-    background-color: #344154;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    color: #fff;
-    font-size: 16px;
-    width: 100%;
-    max-width: 600px;
-    outline: none;
-`
-
-const HabitComboBox = styled.select`
-    appearance: none; /* Remove default styles */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: #344154;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    color: #fff;
-    font-size: 16px;
-    width: 100%;
-    max-width: 600px;
-    outline: none;
-  `
-const HabitComboBoxArrow = styled.div`
-    position: absolute;
-    top: 75%;
-    right: 10px;
-    transform: translateY(-50%);
-    cursor: pointer;
-    pointer-events: none;
-    color: #fff;
-    height: 100%;
-    width: 15px;
-  `
-
-const ComboBoxContainer = styled.div`
-    position: relative;
-`
-
-function ComboBox({ name, children }) {
-  return (
-    <Cell>
-      <StackChildren space={10}>
-        <Text color="#fff" fontSize="15px">
-          {name}
-        </Text>
-
-        <ComboBoxContainer>
-          <HabitComboBox name={name} id={name}>
-            {children}
-          </HabitComboBox>
-          <HabitComboBoxArrow>
-            <OutlineIcons.ChevronRightIcon />
-          </HabitComboBoxArrow>
-        </ComboBoxContainer>
-      </StackChildren>
-    </Cell>
-  )
-}
 
 function Create() {
   return (
@@ -106,13 +39,13 @@ function Create() {
         Name
       </Text>
 
-      <HabitInput type="text" />
+      <InputField type="text" />
 
       <Text color="#fff" fontSize="15px">
         Description
       </Text>
 
-      <HabitInput type="text" />
+      <InputField type="text" />
 
       <InlineChildren space={10}>
         <ComboBox name="Streak/Goal">
@@ -151,7 +84,7 @@ function Create() {
           </ButtonIcon>
         ))}
       </IconGrid>
-    </StackChildren >
+    </StackChildren>
   );
 }
 

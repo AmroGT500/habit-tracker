@@ -1,13 +1,24 @@
-import React from 'react';
+// Home.js
+
+import React, { useState } from 'react';
 import HabitList from './HabitList';
-import AddHabitForm from './AddHabitForm';
 import '../styling/home.css';
+import CalendarView from './CalendarView';
+import AddHabitForm from './AddHabitForm';
+import NewCalendar from './NewCalendar';
 
 function Home() {
+    const [habits, setHabits] = useState([]);
+
+    const onAddHabit = (newHabit) => {
+        setHabits([...habits, newHabit]);
+    };
+
     return (
         <div className="home">
             <HabitList />
-            <AddHabitForm />
+            <NewCalendar/>
+            <AddHabitForm onAddHabit={onAddHabit} />
         </div>
     );
 }

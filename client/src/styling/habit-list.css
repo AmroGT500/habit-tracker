@@ -1,0 +1,61 @@
+/* HabitList.css */
+
+.habit-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.habit-item {
+    flex-basis: calc(33.33% - 20px);
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.habit-item:hover {
+    transform: scale(1.03);
+}
+
+.habit-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.habit-item p {
+    font-size: 1rem;
+    color: #777;
+}
+
+.progress-container {
+    height: 40px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: #4caf50;
+    transition: width 0.3s;
+}
+
+/* for Mobile Devices */
+@media (max-width: 768px) {
+    .habit-item {
+        flex-basis: calc(50% - 20px);
+    }
+
+    .habit-item h3 {
+        font-size: 1rem;
+    }
+
+    .habit-item p {
+        font-size: 0.9rem;
+    }
+}

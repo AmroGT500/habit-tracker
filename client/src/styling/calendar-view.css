@@ -1,0 +1,36 @@
+/* calendar-view.css */
+
+.calendar {
+    text-align: center;
+}
+
+.calendar-item-title {
+    grid-column: 1 / span 7;
+}
+
+.calendar-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); 
+    gap: 5px; 
+    text-align: center;
+}
+
+.day-of-week {
+    font-size: small;
+    background-color: #f0f0f0;
+    padding: 5px;
+}
+
+.calendar-day {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+}
+
+.day-box {
+    font-size: medium;
+    color: rgba(255, 255, 255, 0);
+}
+
+.completed {
+    background-color: #87CEEB; 
+}

@@ -1,0 +1,65 @@
+/* AddHabitForm.css */
+
+.add-habit-form {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.add-habit-form h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.add-habit-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-habit-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.add-habit-form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-habit-form button:hover {
+    background-color: #0056b3;
+}
+
+/* for Mobile Devices */
+@media (max-width: 768px) {
+    .add-habit-form {
+        padding: 10px;
+    }
+
+    .add-habit-form h3 {
+        font-size: 1.2rem;
+    }
+
+    .add-habit-form input {
+        font-size: 0.9rem;
+    }
+
+    .add-habit-form button {
+        font-size: 0.9rem;
+    }
+}

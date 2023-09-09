@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
+import '../styling/add-habit-form.css';
 
-function AddHabitForm() {
+function AddHabitForm({ onAddHabit }) {
     const [habitName, setHabitName] = useState('');
+    const [selectedColor, setSelectedColor] = useState('#FF5733');
 
-    const handleSubmit = event => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        // Logic to add habit with habitName
+        const newHabit = {
+            name: habitName,
+            color: selectedColor,
+        };
+
+        onAddHabit(newHabit);
+
         setHabitName('');
+        setSelectedColor('#FF5733'); 
     };
 
     return (
@@ -17,7 +26,12 @@ function AddHabitForm() {
                     type="text"
                     placeholder="Enter habit name"
                     value={habitName}
-                    onChange={e => setHabitName(e.target.value)}
+                    onChange={(e) => setHabitName(e.target.value)}
+                />
+                <input
+                    type="color"
+                    value={selectedColor}
+                    onChange={(e) => setSelectedColor(e.target.value)}
                 />
                 <button type="submit">Add Habit</button>
             </form>

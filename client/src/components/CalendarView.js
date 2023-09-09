@@ -1,32 +1,53 @@
 // CalendarView.js
-
 import React from 'react';
-import { Calendar } from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import '../styling/calendar-view.css';
 
-function CalendarView() {
-    // Mock data
-    const habitCompletionDates = [
-        new Date(2023, 8, 1),
-        new Date(2023, 8, 3),
-        new Date(2023, 8, 5),
+function CalendarView({ habit }) {
+    if (!habit) {
+        return null;
+    }
 
-    ];
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+
+    const getDaysInMonth = (year, month) => {
+        return new Date(year, month + 1, 0).getDate();
+    };
+
+    const daysInMonth = getDaysInMonth(year, month);
+    const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
+    const firstDayOfWeek = new Date(year, month, 1).getDay();
+
+    const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
     return (
-        <div className="calendar-view">
-            <h2>Habit Completion Calendar</h2>
-            <Calendar
-                tileClassName={({ date }) =>
-                    habitCompletionDates.some(d =>
-                        d.getDate() === date.getDate() &&
-                        d.getMonth() === date.getMonth() &&
-                        d.getFullYear() === date.getFullYear()
-                    )
-                        ? 'habit-completed'
-                        : ''
-                }
-            />
+        <div className="calendar">
+            <h4 className="calendar-item-title">{habit.name} Calendar</h4>
+            <div className="calendar-container">
+                {weekDays.map((dayOfWeek, index) => (
+                    <div key={index} className="day-of-week">
+                        {dayOfWeek}
+                    </div>
+                ))}
+                {daysArray.map((day) => (
+                    <div
+                        key={day}
+                        className={`calendar-day ${habit.completedDays.includes(day) ? 'completed' : ''
+                            }`}
+                        style={{
+                            backgroundColor: habit.completedDays.includes(day)
+                                ? habit.color
+                                : 'transparent',
+                        }}
+                    >
+                        <div className="day-box">{day}</div>
+                    </div>
+))}
+
+
+            </div>
         </div>
     );
 }

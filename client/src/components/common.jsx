@@ -44,6 +44,7 @@ export const InlineChildren = styled.div`
 
 export const Cell = styled.div`
     flex: 1;
+    align-self: ${(props) => props.align || 'center'};
 `
 
 export const Text = styled.div`

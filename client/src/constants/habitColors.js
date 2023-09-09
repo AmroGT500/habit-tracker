@@ -32,3 +32,6 @@ export const sunset = ['#eeeeee', '#fed800', '#ff6f01', '#fd2f24', '#811d5e'];
 export const moon = ['#eeeeee', '#6bcdff', '#00a1f3', '#48009a', '#4f2266'];
 export const psychedelic = ['#eeeeee', '#faafe1', '#fb6dcc', '#fa3fbc', '#ff00ab'];
 export const yellow = ['#eeeeee', '#d7d7a2', '#d4d462', '#e0e03f', '#ffff00'];
+
+
+export const habitColors = [red, orange, yellowMd, green, teal, blue, purple, pink, brown, grey, bluegrey, amber, cyan, deeporange, deeppurple, lightblue, lightgreen, lime, indigo, moon, psychedelic, yellow, unicorn, summer, sunset, github, halloween]

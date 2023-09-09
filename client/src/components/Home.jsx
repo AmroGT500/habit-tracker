@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components'
 import { ButtonIcon, Cell, InlineChildren, StackChildren, Text } from '../components/common';
-import HabitCard from '../components/HabitCard';
+
+import { Link } from 'react-router-dom';
 import { BoltIcon, BookOpenIcon, CodeBracketIcon, ForwardIcon } from '@heroicons/react/24/outline'
 import { Cog8ToothIcon, PlusCircleIcon } from '@heroicons/react/24/solid'
+import HabitCard from '../components/HabitCard';
 import { green, red, teal, yellowMd } from '../constants/habitColors';
 
 const HabitContainer = styled.div`
@@ -32,9 +34,11 @@ function Home() {
                         <Text color="#ba80f4" fontSize="30px" align='center' inline="true">Kit</Text>
                     </Text>
                 </Cell>
-                <ButtonIcon>
-                    <PlusCircleIcon />
-                </ButtonIcon>
+                <Link to="/create">
+                    <ButtonIcon>
+                        <PlusCircleIcon />
+                    </ButtonIcon>
+                </Link>
             </InlineChildren>
             <HabitContainer>
                 <HabitCard name={'Sport'} description={'Weightlifting, running or similar'} icon={<BoltIcon />} color={teal} />

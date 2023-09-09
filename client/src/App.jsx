@@ -4,6 +4,7 @@ import Home from './components/Home';
 import CalendarView from './components/CalendarView'; 
 import StatsView from './components/StatsView'; 
 import './App.css';
+import Create from './components/Create';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <div className="app">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/create" element={<CalendarView />} /> 
+          <Route path="/create" element={<Create />} /> 
           <Route path="/calendar" element={<CalendarView />} /> 
           <Route path="/stats" element={<StatsView />} />
         </Routes>

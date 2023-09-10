@@ -1,24 +1,71 @@
-import React from 'react';
-import styled from 'styled-components'
-import { IconContainer, ButtonIcon, ColorIcon, Cell, InlineChildren, StackChildren, Text, InputField } from '../components/common';
-import ComboBox from './ComboBox';
+import React, { useState } from 'react';
+import { IconContainer, ColorIcon, Cell, InlineChildren, StackChildren, Text } from '../components/common';
+import TextField from './form/TextField';
+import GridField from './form/GridField';
 
 import { Link } from 'react-router-dom';
 import * as OutlineIcons from '@heroicons/react/24/outline'
-import { habitColors } from '../constants/habitColors';
+import { habitColorsMap } from '../constants/habitColors';
+import ComboField from './form/ComboField';
 
-const IconGrid = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 10px;
-    max-height: 140px;
-    overflow-y: hidden;
-`
+
 
 function Create() {
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
+  const [streakGoal, setStreakGoal] = useState('None')
+  const [reminder, setReminder] = useState('None')
+  const [icon, setIcon] = useState('AcademicCapIcon')
+  const [color, setColor] = useState('red')
+
+  const [errors, setErrors] = useState({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (validateForm()) {
+      console.log('Form submitted')
+    } else {
+      console.log('Form has errors')
+    }
+  }
+
+  const validateForm = () => {
+    const newErrors = {}
+
+    if (!name) {
+      newErrors.name = 'Name is required'
+    } else if (name.length > 20) {
+      newErrors.name = 'Name must be less than 20 characters'
+    } else if (name.length < 3) {
+      newErrors.name = 'Name must be more than 3 characters'
+    }
+    if (!description) {
+      newErrors.description = 'Description is required'
+    } else if (description.length > 50) {
+      newErrors.description = 'Description must be less than 50 characters'
+    } else if (description.length < 3) {
+      newErrors.description = 'Description must be more than 3 characters'
+    }
+    if (!streakGoal) {
+      newErrors.streakGoal = 'Streak/Goal is required'
+    }
+    if (!reminder) {
+      newErrors.reminder = 'Reminder is required'
+    }
+    if (!icon) {
+      newErrors.icon = 'Icon is required'
+    }
+    if (!color) {
+      newErrors.color = 'Color is required'
+    }
+
+    setErrors(newErrors)
+
+    return Object.keys(newErrors).length === 0
+  }
+
   return (
-    <StackChildren space={10}>
+    <StackChildren space={10} >
       <InlineChildren space={10}>
         <Link to="/">
           <IconContainer>
@@ -30,62 +77,65 @@ function Create() {
             Create Habit
           </Text>
         </Cell>
-        <Link to="/create">
-          <IconContainer>
-            <OutlineIcons.CheckCircleIcon />
-          </IconContainer>
-        </Link>
+        <IconContainer onClick={handleSubmit}>
+          <OutlineIcons.CheckCircleIcon />
+        </IconContainer>
       </InlineChildren>
 
-      <Text color="#fff" fontSize="15px">
-        Name
-      </Text>
+      <TextField
+        name={'habit-name'}
+        label={'Name'}
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        error={errors.name}
+      />
 
-      <InputField type="text" />
-
-      <Text color="#fff" fontSize="15px">
-        Description
-      </Text>
-
-      <InputField type="text" />
+      <TextField
+        name={'habit-description'}
+        label={'Description'}
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        error={errors.description}
+      />
 
       <InlineChildren space={10}>
-        <ComboBox name="Streak/Goal">
-          <option value="1">None</option>
-          <option value="2">Daily</option>
-          <option value="3">Weekly</option>
-          <option value="4">Monthly</option>
-        </ComboBox>
+        <Cell>
+          <ComboField name="habit-streak" label="Streak/Goal" value={streakGoal} onChange={(e) => setStreakGoal(e.target.value)} error={errors.streakGoal}>
+            <option value="None">None</option>
+            <option value="Daily">Daily</option>
+            <option value="Weekly">Weekly</option>
+            <option value="Monthly">Monthly</option>
+          </ComboField>
+        </Cell>
 
-        <ComboBox name="Reminder">
-          <option value="1">None</option>
-          <option value="2">Daily</option>
-          <option value="3">Weekly</option>
-          <option value="4">Monthly</option>
-        </ComboBox>
+        <Cell>
+          <ComboField name="habit-reminder" label="Reminder" value={reminder} onChange={(e) => setReminder(e.target.value)} error={errors.reminder}>
+            <option value="None">None</option>
+            <option value="Daily">Daily</option>
+            <option value="Weekly">Weekly</option>
+            <option value="Monthly">Monthly</option>
+          </ComboField>
+        </Cell>
       </InlineChildren>
 
-      <Text color="#fff" fontSize="15px">
-        Icon
-      </Text>
-      <IconGrid>
-        {Object.values(OutlineIcons).map((Icon, index) => (
-          <ButtonIcon key={index} backgroundColor={'#344154'}>
-            <Icon />
-          </ButtonIcon>
-        ))}
-      </IconGrid>
+      <GridField
+        name="habit-icon"
+        label="Icon"
+        optionsMap={OutlineIcons}
+        value={icon}
+        onClick={(v) => setIcon(v)}
+        renderOption={(Icon) => <Icon/>}
+        error={errors.icon} />
+      
+      <GridField
+        name="habit-color"
+        label="Color"
+        optionsMap={habitColorsMap}
+        value={color}
+        onClick={(v) => setColor(v)}
+        renderOption={(colorArr) => <ColorIcon color={colorArr[3]} />}
+        error={errors.color} />
 
-      <Text color="#fff" fontSize="15px">
-        Color
-      </Text>
-      <IconGrid>
-        {habitColors.map((color, index) => (
-          <ButtonIcon key={index} backgroundColor={'#344154'}>
-            <ColorIcon color={color[3]} />
-          </ButtonIcon>
-        ))}
-      </IconGrid>
     </StackChildren>
   );
 }

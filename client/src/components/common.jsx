@@ -9,6 +9,11 @@ export const IconContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
     > * {
         color: #fff;
         width: 50%;
@@ -18,6 +23,10 @@ export const IconContainer = styled.div`
 
 export const ButtonIcon = styled(IconContainer)`
     cursor: pointer;
+`
+
+export const ToggleIcon = styled(ButtonIcon)`
+    border: ${(props) => props.selected ? '2px solid #fff' : 'none'};
 `
 
 export const ColorIcon = styled.div`
@@ -62,10 +71,9 @@ export const Text = styled.div`
     font-family: Roboto;
     text-align:  ${(props) => props.align || 'left'};
     display: ${(props) => props.inline ? 'inline' : 'block'};
-    tag: ${(props) => props.tag};
 `
 
-export const InputField = styled.input`
+export const TextInput = styled.input`
     background-color: #344154;
     padding: 10px;
     border-radius: 5px;

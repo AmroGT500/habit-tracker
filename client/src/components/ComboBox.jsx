@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components'
-import { Cell, StackChildren, Text } from '../components/common'
 import * as OutlineIcons from '@heroicons/react/24/outline'
 
 const ComboBoxSelect = styled.select`
@@ -33,24 +32,16 @@ const ComboBoxContainer = styled.div`
     position: relative;
 `
 
-const ComboBox = ({ name, children }) => {
+const ComboBox = ({ name, children, value, onChange }) => {
   return (
-    <Cell>
-      <StackChildren space={10}>
-        <Text color="#fff" fontSize="15px">
-          {name}
-        </Text>
-
-        <ComboBoxContainer>
-          <ComboBoxSelect name={name} id={name}>
-            {children}
-          </ComboBoxSelect>
-          <ComboBoxArrow>
-            <OutlineIcons.ChevronRightIcon />
-          </ComboBoxArrow>
-        </ComboBoxContainer>
-      </StackChildren>
-    </Cell>
+    <ComboBoxContainer>
+      <ComboBoxSelect name={name} id={name} value={value} onChange={onChange}>
+        {children}
+      </ComboBoxSelect>
+      <ComboBoxArrow>
+        <OutlineIcons.ChevronRightIcon />
+      </ComboBoxArrow>
+    </ComboBoxContainer>
   )
 }
 

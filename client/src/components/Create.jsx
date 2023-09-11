@@ -8,8 +8,6 @@ import * as OutlineIcons from '@heroicons/react/24/outline'
 import { habitColorsMap } from '../constants/habitColors';
 import ComboField from './form/ComboField';
 
-
-
 function Create() {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')

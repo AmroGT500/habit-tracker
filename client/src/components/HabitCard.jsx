@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
 import { IconContainer, Cell, InlineChildren, StackChildren, Text, ButtonIcon } from './common';
-import { randomNumber } from '../constants/utility';
+import * as OutlineIcons from '@heroicons/react/24/outline'
+import { habitColorsMap } from '../constants/habitColors';
 import { CheckIcon } from '@heroicons/react/24/outline'
 
 const HabitCardContainer = styled.div`
@@ -34,13 +35,16 @@ const HabitBox = styled.div`
     height: 10px;
 `
 
-const HabitCard = ({ name, description, icon, color }) => {
+const HabitCard = ({ name, description, iconName, colorName, logs }) => {
+  const IconElement = OutlineIcons[iconName]
+  const color = habitColorsMap[colorName]
+
   return (
     <HabitCardContainer>
       <StackChildren space={10}>
         <InlineChildren space={10}>
           <IconContainer backgroundColor={'#344154'}>
-            {icon}
+            <IconElement/>
           </IconContainer>
           <Cell>
             <StackChildren space={5}>
@@ -53,8 +57,8 @@ const HabitCard = ({ name, description, icon, color }) => {
           </ButtonIcon>
         </InlineChildren>
         <HabitGrid>
-          {Array(371).fill(0).map((_, i) => (
-            <HabitBox habitColor={color} level={randomNumber(0, 4)} key={i}></HabitBox>
+          {logs.map((log, i) => (
+            <HabitBox habitColor={color} level={log} key={i}></HabitBox>
           ))}
         </HabitGrid>
       </StackChildren>

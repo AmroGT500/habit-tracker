@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components'
 import { IconContainer, Cell, InlineChildren, StackChildren, Text } from '../components/common';
 
 import { Link } from 'react-router-dom';
-import { BoltIcon, BookOpenIcon, CodeBracketIcon, ForwardIcon } from '@heroicons/react/24/outline'
 import { Cog8ToothIcon, PlusCircleIcon } from '@heroicons/react/24/solid'
 import HabitCard from '../components/HabitCard';
-import { green, red, teal, yellowMd } from '../constants/habitColors';
 
 const HabitContainer = styled.div`
     display: flex;
@@ -21,6 +19,76 @@ const HabitContainer = styled.div`
 `
 
 function Home() {
+    const [habits, setHabits] = useState([]);
+    const [habitLogs, setHabitLogs] = useState([]);
+
+    useEffect(() => {
+        getHabits();
+        getLogs();
+    }, []);
+
+    const getHabits = async () => {
+        try {
+            const response = await fetch('/mock/habits.json'); // Update the path to your JSON file
+            if (!response.ok) {
+                throw new Error('Failed to fetch habitydata');
+            }
+            const data = await response.json();
+            setHabits(data.habits);
+        } catch (error) {
+            console.error('Error fetching habits:', error);
+        }
+    }
+
+    const getLogs = async () => {
+        try {
+            const response = await fetch('/mock/habit-logs.json'); // Update the path to your JSON file
+            if (!response.ok) {
+                throw new Error('Failed to fetch log data');
+            }
+            const data = await response.json();
+            setHabitLogs(data.logs);
+        } catch (error) {
+            console.error('Error fetching logs:', error);
+        }
+    }
+
+    const getHabitLogs = (habit) => {
+        const currentDate = new Date();
+        const dateList = [];
+
+        for (let i = 0; i < 53; i++) {
+            const startingMonday = new Date(currentDate);
+            startingMonday.setDate(currentDate.getDate() - (currentDate.getDay() + 6) % 7);
+            startingMonday.setDate(startingMonday.getDate() - (i * 7));
+
+            for (let j = 0; j < 7; j++) {
+                const date = new Date(startingMonday);
+                date.setHours(0, 0, 0, 0);
+                date.setDate(startingMonday.getDate() + j);
+                dateList.push(date)
+            }
+        }
+
+        const result = [];
+
+        const currentHabitLogs = habitLogs.filter(log => log.habitId === habit.id);
+
+        dateList.forEach(date => {
+            const timestamp = date.getTime();
+            const matchingLog = currentHabitLogs.find(log => log.timestamp === String(timestamp));
+
+            result.push(matchingLog?.value || 0);
+        });
+
+        return result;
+    }
+
+    if (!habits.length) return null;
+
+    if (!habitLogs.length) return null;
+
+
     return (
         <StackChildren space={10}>
             <InlineChildren space={10}>
@@ -40,10 +108,15 @@ function Home() {
                 </Link>
             </InlineChildren>
             <HabitContainer>
-                <HabitCard name={'Sport'} description={'Weightlifting, running or similar'} icon={<BoltIcon />} color={teal} />
-                <HabitCard name={'Coding'} description={'Learn to code with Flutter & Dart'} icon={<CodeBracketIcon />} color={green} />
-                <HabitCard name={'Reading'} description={'Read everyday for at least 15 min'} icon={<BookOpenIcon />} color={yellowMd} />
-                <HabitCard name={'Walk'} description={'Go for a walk out on the beach'} icon={<ForwardIcon />} color={red} />
+                {habits.map((habit) => (
+                    <HabitCard
+                        key={habit.id}
+                        name={habit.name}
+                        description={habit.description}
+                        iconName={habit.icon}
+                        colorName={habit.color}
+                        logs={getHabitLogs(habit)} />
+                ))}
             </HabitContainer>
         </StackChildren>
     );

@@ -1,0 +1,32 @@
+{
+  "habits": [
+    {
+      "id": 1,
+      "name": "Sport",
+      "description": "Weightlifting, running or similar",
+      "color": "teal",
+      "icon": "BoltIcon"
+    },
+    {
+      "id": 2,
+      "name": "Coding",
+      "description": "Learn to code with Flutter & Dart",
+      "color": "green",
+      "icon": "CodeBracketIcon"
+    },
+    {
+      "id": 3,
+      "name": "Reading",
+      "description": "Read everyday for at least 15 min",
+      "color": "yellowMd",
+      "icon": "BookOpenIcon"
+    },
+    {
+      "id": 4,
+      "name": "Walk",
+      "description": "Go for a walk out on the beach",
+      "color": "red",
+      "icon": "ForwardIcon"
+    }
+  ]
+}
